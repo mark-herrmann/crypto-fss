@@ -1,0 +1,37 @@
+{
+  "name": "crypto-fss",
+  "version": "0.1.0",
+  "description": "crypto-filesystems: encrypted virtual filesystem with local and external storage backends.",
+  "contributors": [
+    {
+      "name": "mark-herrmann",
+      "email": "github@markherrmann.de"
+    }
+  ],
+  "private": false,
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
+  "author": "Mark Herrmann (mark-herrmann)",
+  "bugs": {
+    "url": "https://github.com/mark-herrmann/crypto-fss/issues"
+  },
+  "homepage": "https://github.com/mark-herrmann/crypto-fss#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "assertthat": "6.5.2",
+    "roboter": "13.2.1",
+    "typescript": "5.0.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-herrmann/crypto-fss.git"
+  },
+  "keywords": [
+    "encryption",
+    "filesystem",
+    "storage",
+    "crypto"
+  ],
+  "license": "MIT"
+}
