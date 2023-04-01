@@ -24,7 +24,7 @@ jobs:
         npm install
     - name: Run roboter
       run: |
-        npx roboter qa
+        npx roboter analyze && npx roboter test && npx roboter deps
     - name: Compile TypeScript
       run: |
         npx roboter build
