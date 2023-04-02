@@ -41,6 +41,16 @@ suite('AES encryption and decryption', (): void => {
 
     assert.that((): void => {
       decrypt(cipherAndTag, key, nonce, additionalData);
-    }).is.throwing('The operation failed for an operation-specific reason');
+    }).is.throwing('Unsupported state or unable to authenticate data');
+  });
+
+  test('fails to decrypt due to invalid additionalData.', async (): Promise<void> => {
+    const { key, nonce, additionalData, cipherAndTag } = testVector;
+
+    additionalData[0] = additionalData[0] === 0 ? 1 : 0;
+
+    assert.that((): void => {
+      decrypt(cipherAndTag, key, nonce, additionalData);
+    }).is.throwing('Unsupported state or unable to authenticate data');
   });
 });
