@@ -53,4 +53,14 @@ suite('AES encryption and decryption', (): void => {
       decrypt(cipherAndTag, key, nonce, additionalData);
     }).is.throwing('Unsupported state or unable to authenticate data');
   });
+
+  test('fails to decrypt due to invalid key.', async (): Promise<void> => {
+    const { key, nonce, additionalData, cipherAndTag } = testVector;
+
+    key[0] = key[0] === 0 ? 1 : 0;
+
+    assert.that((): void => {
+      decrypt(cipherAndTag, key, nonce, additionalData);
+    }).is.throwing('Unsupported state or unable to authenticate data');
+  });
 });
