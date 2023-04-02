@@ -21,7 +21,7 @@ suite('AES encryption and decryption', (): void => {
   test('encrypts correctly.', async (): Promise<void> => {
     const { key, nonce, data, additionalData, cipherAndTag } = testVector;
 
-    const acualCipherAndTag = await encrypt(data, key, nonce, additionalData);
+    const acualCipherAndTag = encrypt(data, key, nonce, additionalData);
 
     assert.that(acualCipherAndTag).is.equalTo(cipherAndTag);
   });
@@ -29,7 +29,7 @@ suite('AES encryption and decryption', (): void => {
   test('decrypts correctly.', async (): Promise<void> => {
     const { key, nonce, data, additionalData, cipherAndTag } = testVector;
 
-    const acualDecrypted = await decrypt(cipherAndTag, key, nonce, additionalData);
+    const acualDecrypted = decrypt(cipherAndTag, key, nonce, additionalData);
 
     assert.that(acualDecrypted).is.equalTo(data);
   });
@@ -39,9 +39,8 @@ suite('AES encryption and decryption', (): void => {
 
     cipherAndTag[0] = cipherAndTag[0] === 0 ? 1 : 0;
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    assert.that(async (): Promise<void> => {
-      await decrypt(cipherAndTag, key, nonce, additionalData);
-    }).is.throwingAsync('The operation failed for an operation-specific reason');
+    assert.that((): void => {
+      decrypt(cipherAndTag, key, nonce, additionalData);
+    }).is.throwing('The operation failed for an operation-specific reason');
   });
 });

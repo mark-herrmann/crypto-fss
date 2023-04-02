@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 const algorithm = 'aes-256-gcm';
 
-const encrypt = async (data: Buffer, keyData: Buffer, iv: Buffer, additionalData: Buffer): Promise<Buffer> => {
+const encrypt = (data: Buffer, keyData: Buffer, iv: Buffer, additionalData: Buffer): Buffer => {
   const cipher = crypto.createCipheriv(algorithm, keyData, iv);
 
   cipher.setAAD(additionalData);
@@ -14,7 +14,7 @@ const encrypt = async (data: Buffer, keyData: Buffer, iv: Buffer, additionalData
   return Buffer.concat([ ciphertext, authTag ]);
 };
 
-const decrypt = async (cipherAndTag: Buffer, keyData: Buffer, iv: Buffer, additionalData: Buffer): Promise<Buffer> => {
+const decrypt = (cipherAndTag: Buffer, keyData: Buffer, iv: Buffer, additionalData: Buffer): Buffer => {
   const decipher = crypto.createDecipheriv(algorithm, keyData, iv);
   const ciphertext = cipherAndTag.subarray(0, -16);
   const authTag = cipherAndTag.subarray(-16);
